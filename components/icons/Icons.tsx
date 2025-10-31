@@ -35,3 +35,4 @@ export const AutomationIcon = createIcon(<><path d="M12 22v-2"></path><path d="m
 export const TechIcon = createIcon(<><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></>);
 export const ChevronDownIcon = createIcon(<polyline points="6 9 12 15 18 9"></polyline>);
 export const DownloadIcon = createIcon(<><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></>);
+export const SpinnerIcon = createIcon(<path d="M21 12a9 9 0 1 1-6.219-8.56" />);

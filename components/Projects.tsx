@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { translations } from '../translations';
 import { ArrowRightIcon } from './icons/Icons';
@@ -20,7 +21,7 @@ const Projects: React.FC<ProjectsProps> = ({ t }) => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {t.projects.map((project, index) => (
-              <div key={index} className="group bg-[var(--bg-color)] border border-[var(--primary-color)]/20 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+              <div key={index} className="group bg-[var(--bg-color)] border border-[var(--primary-color)]/20 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 hover:scale-105 hover:shadow-2xl hover:shadow-[var(--primary-color)]/20 transition-all duration-300 ease-in-out">
                 <div className="relative">
                   <img src={project.image} alt={project.title} className="w-full h-56 object-cover" />
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300"></div>

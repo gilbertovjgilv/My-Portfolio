@@ -1,13 +1,66 @@
-// FIX: The original file content was raw JSX. It has been wrapped in a proper React functional component with necessary imports, props, and a default export to resolve multiple errors.
-import React from 'react';
+import React, { useState } from 'react';
 import { translations } from '../translations';
-import { MailIcon, PhoneIcon, SendIcon } from './icons/Icons';
+import { MailIcon, PhoneIcon, SendIcon, CheckCircleIcon, SpinnerIcon } from './icons/Icons';
 
 interface ContactProps {
   t: typeof translations.en.contact;
 }
 
 const Contact: React.FC<ContactProps> = ({ t }) => {
+  const [formData, setFormData] = useState({ name: '', email: '', project: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [responseMessage, setResponseMessage] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('sending');
+    setResponseMessage('');
+
+    try {
+      // IMPORTANT: Replace 'YOUR_FORM_ID_HERE' with your actual Formspree form ID
+      const response = await fetch('https://formspree.io/f/meoplbrd', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setResponseMessage(t.form.successMessage);
+        setFormData({ name: '', email: '', project: '', message: '' });
+      } else {
+        const data = await response.json();
+        setStatus('error');
+        setResponseMessage(data.error || t.form.errorMessage);
+      }
+    } catch (error) {
+      setStatus('error');
+      setResponseMessage(t.form.errorMessage);
+    }
+  };
+
+  if (status === 'success') {
+    return (
+      <section id="contact" className="py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center min-h-[500px]">
+          <div className="max-w-md w-full p-8 border border-[var(--primary-color)]/30 rounded-lg bg-[var(--bg-color-alt)] animate-scaleUp">
+            <CheckCircleIcon className="w-16 h-16 text-[var(--primary-color)] mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-[var(--text-color)] mb-2">{t.form.successTitle}</h3>
+            <p className="text-[var(--text-secondary)]">{responseMessage}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="contact" className="py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,26 +88,44 @@ const Contact: React.FC<ContactProps> = ({ t }) => {
           </div>
 
           {/* Contact Form */}
-          <form action="" className="flex flex-col gap-6">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div className="relative">
               <label htmlFor="name" className="absolute -top-2 left-4 bg-[var(--bg-color)] px-1 text-xs text-[var(--text-secondary)]">{t.form.name}</label>
-              <input type="text" id="name" className="w-full bg-transparent border border-[var(--primary-color)]/30 p-4 rounded-lg text-[var(--text-color)] focus:outline-none focus:border-[var(--primary-color)]" />
+              <input type="text" id="name" value={formData.name} onChange={handleChange} required className="w-full bg-transparent border border-[var(--primary-color)]/30 p-4 rounded-lg text-[var(--text-color)] focus:outline-none focus:border-[var(--primary-color)]" />
             </div>
             <div className="relative">
               <label htmlFor="email" className="absolute -top-2 left-4 bg-[var(--bg-color)] px-1 text-xs text-[var(--text-secondary)]">{t.form.email}</label>
-              <input type="email" id="email" className="w-full bg-transparent border border-[var(--primary-color)]/30 p-4 rounded-lg text-[var(--text-color)] focus:outline-none focus:border-[var(--primary-color)]" />
+              <input type="email" id="email" value={formData.email} onChange={handleChange} required className="w-full bg-transparent border border-[var(--primary-color)]/30 p-4 rounded-lg text-[var(--text-color)] focus:outline-none focus:border-[var(--primary-color)]" />
             </div>
             <div className="relative">
               <label htmlFor="project" className="absolute -top-2 left-4 bg-[var(--bg-color)] px-1 text-xs text-[var(--text-secondary)]">{t.form.project}</label>
-              <input type="text" id="project" className="w-full bg-transparent border border-[var(--primary-color)]/30 p-4 rounded-lg text-[var(--text-color)] focus:outline-none focus:border-[var(--primary-color)]" />
+              <input type="text" id="project" value={formData.project} onChange={handleChange} className="w-full bg-transparent border border-[var(--primary-color)]/30 p-4 rounded-lg text-[var(--text-color)] focus:outline-none focus:border-[var(--primary-color)]" />
             </div>
             <div className="relative">
               <label htmlFor="message" className="absolute -top-2 left-4 bg-[var(--bg-color)] px-1 text-xs text-[var(--text-secondary)]">{t.form.message}</label>
-              <textarea id="message" rows={5} className="w-full bg-transparent border border-[var(--primary-color)]/30 p-4 rounded-lg text-[var(--text-color)] focus:outline-none focus:border-[var(--primary-color)] resize-none"></textarea>
+              <textarea id="message" value={formData.message} onChange={handleChange} required rows={5} className="w-full bg-transparent border border-[var(--primary-color)]/30 p-4 rounded-lg text-[var(--text-color)] focus:outline-none focus:border-[var(--primary-color)] resize-none"></textarea>
             </div>
-            <button type="submit" className="bg-[var(--primary-color)] text-white font-medium py-3 px-6 rounded-lg inline-flex items-center justify-center hover:opacity-90 w-fit">
-              {t.send} <SendIcon className="ml-2" />
-            </button>
+            <div>
+              <button 
+                type="submit" 
+                disabled={status === 'sending'}
+                className="bg-[var(--primary-color)] text-white font-medium py-3 px-6 rounded-lg inline-flex items-center justify-center hover:opacity-90 w-fit disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+              >
+                {status === 'sending' ? (
+                  <>
+                    <SpinnerIcon className="animate-spin mr-2" />
+                    {t.form.sending}
+                  </>
+                ) : (
+                  <>
+                    {t.send} <SendIcon className="ml-2" />
+                  </>
+                )}
+              </button>
+              {status === 'error' && (
+                <p className="text-red-500 text-sm mt-4">{responseMessage}</p>
+              )}
+            </div>
           </form>
         </div>
       </div>
