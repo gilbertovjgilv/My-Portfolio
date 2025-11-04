@@ -5,9 +5,10 @@ import { GithubIcon, LinkedInIcon } from './icons/Icons';
 interface SocialLinksProps {
   iconClassName?: string;
   linkedinUrl: string;
+  githubUrl: string;
 }
 
-const SocialLinks: React.FC<SocialLinksProps> = ({ iconClassName, linkedinUrl }) => {
+const SocialLinks: React.FC<SocialLinksProps> = ({ iconClassName, linkedinUrl, githubUrl }) => {
   const defaultClasses = "text-[var(--primary-color)] hover:opacity-80 transition-opacity";
   const finalClassName = iconClassName || defaultClasses;
 
@@ -16,7 +17,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ iconClassName, linkedinUrl })
       <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" className={finalClassName}>
         <LinkedInIcon />
       </a>
-      <a href="https://github.com" target="_blank" rel="noopener noreferrer" className={finalClassName}>
+      <a href={githubUrl} target="_blank" rel="noopener noreferrer" className={finalClassName}>
         <GithubIcon />
       </a>
     </div>

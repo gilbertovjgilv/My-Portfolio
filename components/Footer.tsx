@@ -19,7 +19,10 @@ const Footer: React.FC<FooterProps> = ({ t }) => {
         </ul>
 
         <div className="flex justify-center mb-10 text-xl">
-           <SocialLinks linkedinUrl={t.about.linkedinUrl} iconClassName="bg-white/10 text-white p-2 rounded-lg hover:bg-white/20 border border-transparent" />
+           <SocialLinks 
+            linkedinUrl={t.about.linkedinUrl} 
+            githubUrl={t.about.githubUrl}
+            iconClassName="bg-white/10 text-white p-2 rounded-lg hover:bg-white/20 border border-transparent" />
         </div>
 
         <div className="text-xs text-white/80">

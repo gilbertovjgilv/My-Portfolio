@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Language, Theme } from '../types';
 import { SunIcon, MoonIcon, MenuIcon, CloseIcon } from './icons/Icons';
@@ -132,7 +133,7 @@ const PillNav: React.FC<PillNavProps> = ({
     <header className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl z-50">
       <div
         className="container mx-auto px-4 sm:px-6 lg:px-8 rounded-full shadow-lg border"
-        style={{ backgroundColor: baseColor, borderColor }}
+        style={{ backgroundColor: baseColor, borderColor, transition: 'background-color 300ms ease-in-out, border-color 300ms ease-in-out' }}
       >
         <div className="flex items-center justify-between h-16">
           <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="flex-shrink-0">
@@ -141,7 +142,7 @@ const PillNav: React.FC<PillNavProps> = ({
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center justify-center">
-            <ul ref={navRef} className="flex items-center p-1 rounded-full relative" style={{ backgroundColor: pillColor }}>
+            <ul ref={navRef} className="flex items-center p-1 rounded-full relative" style={{ backgroundColor: pillColor, transition: 'background-color 300ms ease-in-out' }}>
               <div
                 className="absolute top-1/2 -translate-y-1/2 h-[calc(100%-0.5rem)] rounded-full transition-all duration-300 ease-in-out"
                 style={{
@@ -172,7 +173,7 @@ const PillNav: React.FC<PillNavProps> = ({
       {isMenuOpen && (
         <div
           className="md:hidden mt-2 rounded-lg shadow-lg border"
-          style={{ backgroundColor: baseColor, borderColor }}
+          style={{ backgroundColor: baseColor, borderColor, transition: 'background-color 300ms ease-in-out, border-color 300ms ease-in-out' }}
         >
           <nav>
             <ul className="flex flex-col items-center space-y-2 p-4">

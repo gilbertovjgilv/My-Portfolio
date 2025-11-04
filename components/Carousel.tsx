@@ -1,9 +1,11 @@
+
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 
 const DRAG_BUFFER = 10;
 const VELOCITY_THRESHOLD = 500;
 const GAP = 24;
+// FIX: Correctly type `SPRING_OPTIONS` to satisfy framer-motion's Transition type.
 const SPRING_OPTIONS = { type: 'spring' as const, stiffness: 400, damping: 40 };
 
 export default function Carousel({
@@ -100,7 +102,7 @@ export default function Carousel({
     }
   };
 
-  const handleDragEnd = (_, info) => {
+  const handleDragEnd = (_: any, info: any) => {
     const offset = info.offset.x;
     const velocity = info.velocity.x;
     if (offset < -DRAG_BUFFER || velocity < -VELOCITY_THRESHOLD) {
@@ -180,10 +182,10 @@ export default function Carousel({
             <motion.div
               key={index}
               className={`carousel-indicator ${currentIndex % items.length === index ? 'active' : 'inactive'}`}
+              onClick={() => setCurrentIndex(index)}
               animate={{
                 scale: currentIndex % items.length === index ? 1.2 : 1
               }}
-              onClick={() => setCurrentIndex(index)}
               transition={{ duration: 0.15 }}
             />
           ))}

@@ -11,10 +11,11 @@ export const translations = {
     hero: {
       greeting: "Hello, I'm",
       name: 'Gilberto Gil',
+      iAmA: 'I am',
       roles: [
-        'Customer Service Expert',
-        'Automation Specialist',
-        'Customer Success Manager',
+        'a Customer Service Expert',
+        'an Automation Specialist',
+        'a Customer Success Manager',
       ],
       description: 'Specialist in Customer Success and process automation with experience in CRM, AI assistants, and conversion optimization. I transform the customer experience into measurable results.',
       buttonProjects: 'View My Projects',
@@ -30,6 +31,7 @@ export const translations = {
       description: 'As a Customer Success Manager with a technical background, I specialize in bridging the gap between customer needs and product capabilities. I excel at creating automations and solutions that enhance customer satisfaction and drive long-term value.',
       button: 'Connect on LinkedIn',
       linkedinUrl: 'https://www.linkedin.com/in/gilberto-gil-3476a8190/',
+      githubUrl: 'https://github.com',
     },
     skills: {
       title: 'Skills',
@@ -57,13 +59,7 @@ export const translations = {
       subtitle: 'My recent work',
       viewMore: 'View more',
       projects: [
-        {
-          title: 'Automated Onboarding',
-          category: 'Automation',
-          image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop',
-          description: 'Developed an automated email and in-app messaging sequence for new user onboarding using Zapier and Intercom, reducing manual effort by 80%.',
-          link: 'https://github.com',
-        },
+
         {
           title: 'Proactive Churn Detection',
           category: 'Data Analysis',
@@ -86,21 +82,25 @@ export const translations = {
           link: 'https://github.com',
         },
         {
-          title: 'Automated Feedback Loop',
+          title: 'Football Management Platform',
           category: 'Automation',
           image: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1470&auto=format&fit=crop',
-          description: 'Used Make/Integromat to create a workflow that automatically sends survey results from Zendesk to a Slack channel for the product team, improving response times to feedback.',
+          description: 'Complete sports management system with integrated calculator, tournaments and FIFA-style player cards.',
           link: 'https://github.com',
         },
         {
-          title: 'Salesforce & Zendesk Integration',
-          category: 'Integration',
+          title: 'Volleyball Team Calculator App',
+          category: 'App Web',
           image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1470&auto=format&fit=crop',
-          description: 'Managed the integration between Salesforce and Zendesk, providing the support team with a 360-degree view of the customer and reducing average handle time by 10%.',
+          description: 'Management system for volleyball teams with integrated account calculator and exchange rate APIs.',
           link: 'https://github.com',
         },
       ],
     },
+
+
+
+
     experience: {
       title: 'Experience',
       subtitle: 'My professional journey',
@@ -204,6 +204,7 @@ export const translations = {
     hero: {
       greeting: 'Hola, soy',
       name: 'Gilberto Gil',
+      iAmA: 'Soy',
       roles: [
         'Experto en Customer Service',
         'Especialista en Automatización',
@@ -223,6 +224,7 @@ export const translations = {
       description: 'Como Gerente de Éxito del Cliente con experiencia técnica, me especializo en cerrar la brecha entre las necesidades del cliente y las capacidades del producto. Me destaco en la creación de automatizaciones y soluciones que mejoran la satisfacción del cliente e impulsan el valor a largo plazo.',
       button: 'Conectar en LinkedIn',
       linkedinUrl: 'https://www.linkedin.com/in/gilberto-gil-3476a8190/',
+      githubUrl: 'https://github.com',
     },
     skills: {
       title: 'Habilidades',
@@ -231,17 +233,17 @@ export const translations = {
         {
           title: 'Éxito del Cliente',
           icon: 'CustomerSuccessIcon',
-          skills: ['Account Management', 'Metrics Analysis', 'Conversion Optimization', 'Customer Support', 'ChurnZero'],
+          skills: ['Gestión de Cuentas', 'Análisis de Métricas', 'Optimización de Conversión', 'Soporte al Cliente', 'ChurnZero'],
         },
         {
-          title: 'Automatización',
+          title: 'Automatización y CRM',
           icon: 'AutomationIcon',
           skills: ['Zapier', 'Make', 'Go High Level', 'Airtable', 'Zendesk & Intercom'],
         },
         {
-          title: 'Técnico',
+          title: 'Tecnologías y Herramientas',
           icon: 'TechIcon',
-          skills: ['HTML/CSS', 'JavaScript', 'ChatGPT & AI Studio', 'SQL & JSON', 'Project Management'],
+          skills: ['HTML/CSS', 'JavaScript', 'ChatGPT & AI Studio', 'SQL & JSON', 'Gestión de Proyectos'],
         },
       ],
     },
