@@ -45,7 +45,7 @@ const About: React.FC<AboutProps> = ({ t }) => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div className="w-full max-w-sm mx-auto flex justify-center items-center min-h-[320px]" variants={itemVariants}>
             <TiltedCard
-              imageSrc="https://i.ibb.co/h1YbqX5Y/Chat-GPT-Image-31-mar-2025-08-53-52-a-m.png"
+              imageSrc="https://i.postimg.cc/tRNt7nvL/YO-IA.png"
               altText="Gilberto Gil"
               containerHeight="320px"
               containerWidth="320px"
@@ -75,7 +75,7 @@ const About: React.FC<AboutProps> = ({ t }) => {
                 <span className="text-xs text-[var(--text-secondary)]">{t.csat}</span>
               </StarBorder>
             </div>
-            <p className="text-[var(--text-secondary)] mb-8">{t.description}</p>
+            <p className="text-[var(--text-secondary)] mb-8 text-justify">{t.description}</p>
             <a href={t.linkedinUrl} target="_blank" rel="noopener noreferrer" className="bg-[var(--primary-color)] text-white font-medium py-3 px-6 rounded-lg inline-flex items-center hover:opacity-90">
               {t.button}
             </a>

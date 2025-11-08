@@ -1,5 +1,6 @@
 import type { SpringOptions } from 'framer-motion';
-import { useRef, useState } from 'react';
+// FIX: Import React to resolve namespace errors for types like React.ComponentProps and React.MouseEvent.
+import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 interface TiltedCardProps {

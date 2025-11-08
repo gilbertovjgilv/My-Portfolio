@@ -71,6 +71,14 @@ const Hero: React.FC<HeroProps> = ({ t }) => {
     const roles = t.roles;
     if (!roles || roles.length === 0) return;
 
+    // Reset role index if it's out of bounds (e.g., after language change)
+    if (roleIndex >= roles.length) {
+      setRoleIndex(0);
+      setDisplayedRole('');
+      setIsDeleting(false);
+      return;
+    }
+
     const currentRole = roles[roleIndex];
     
     const handleTyping = () => {

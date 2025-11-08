@@ -1,5 +1,5 @@
 import React from 'react';
-import { CustomerSuccessIcon, AutomationIcon, TechIcon } from './icons/Icons';
+import { CustomerSuccessIcon, AutomationIcon, TechIcon, BriefcaseIcon } from './icons/Icons';
 import { translations } from '../translations';
 import SpotlightCard from './SpotlightCard';
 import { motion, Variants } from 'framer-motion';
@@ -12,6 +12,7 @@ const iconMap: { [key: string]: React.FC<React.SVGProps<SVGSVGElement>> } = {
   CustomerSuccessIcon,
   AutomationIcon,
   TechIcon,
+  BriefcaseIcon,
 };
 
 const sectionVariants: Variants = {
@@ -47,13 +48,13 @@ const Skills: React.FC<SkillsProps> = ({ t }) => {
         <motion.p className="text-center text-sm text-[var(--text-secondary)] mb-12" variants={itemVariants}>{t.subtitle}</motion.p>
 
         <motion.div 
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
           variants={sectionVariants}
         >
           {t.categories.map((category) => {
             const IconComponent = iconMap[category.icon];
             return (
-              <motion.div key={category.title} variants={itemVariants}>
+              <motion.div key={category.id} variants={itemVariants}>
                 <SpotlightCard 
                   spotlightColor="rgba(13, 148, 136, 0.15)"
                   className="h-full"

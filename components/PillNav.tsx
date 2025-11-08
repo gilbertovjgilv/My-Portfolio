@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Language, Theme } from '../types';
 import { SunIcon, MoonIcon, MenuIcon, CloseIcon } from './icons/Icons';
+import FlipButton, { FlipButtonFront, FlipButtonBack } from './FlipButton';
 
 interface NavItem {
   href: string;
@@ -98,14 +99,21 @@ const PillNav: React.FC<PillNavProps> = ({
   );
 
   const ThemeSwitcher = () => (
-    <button
-      onClick={onThemeChange}
-      className="p-2 rounded-full"
-      style={{ color: pillTextColor }}
-      aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-    >
-      {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
-    </button>
+     <FlipButton
+        onClick={onThemeChange}
+        isFlipped={theme === 'light'}
+      >
+        <FlipButtonFront>
+            <div className="p-2 rounded-full" style={{ color: pillTextColor }}>
+              <SunIcon />
+            </div>
+        </FlipButtonFront>
+        <FlipButtonBack>
+            <div className="p-2 rounded-full" style={{ color: pillTextColor }}>
+              <MoonIcon />
+            </div>
+        </FlipButtonBack>
+      </FlipButton>
   );
 
   const navLinks = (
